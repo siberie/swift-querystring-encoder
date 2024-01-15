@@ -23,12 +23,9 @@ struct KeyedQueryStringEncodingContainer<Key>: KeyedEncodingContainerProtocol wh
     }
 
     mutating func encode(_ value: String, forKey key: Key) throws {
-        let characters = CharacterSet(
-                charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~-._"
-        )
         container.encode(
-                key: codingPath + [key],
-                value: value.addingPercentEncoding(withAllowedCharacters: characters)!
+            key: codingPath + [key],
+            value: value.addingPercentEncoding(withAllowedCharacters: allowedCharacters)!
         )
     }
 
@@ -81,18 +78,14 @@ struct KeyedQueryStringEncodingContainer<Key>: KeyedEncodingContainerProtocol wh
     }
 
     mutating func encode<T>(_ value: T, forKey key: Key) throws where T: Encodable {
-        if let date = value as? Date {
-            let iso8601DateFormatter = ISO8601DateFormatter()
-            iso8601DateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-            let string = iso8601DateFormatter.string(from: date)
-            try self.encode(string, forKey: key)
-            return
+        if T.self == Date.self {
+            let string = iso8601DateFormatter.string(from: value as! Date)
+            try encode(string, forKey: key)
+        } else {
+            let encoder = QueryParametersEncoder(to: container, codingPath: codingPath + [key])
+            try value.encode(to: encoder)
         }
-
-        let encoder = QueryParametersEncoder(to: container, codingPath: codingPath + [key])
-        try value.encode(to: encoder)
     }
-
 
     mutating func nestedContainer<NestedKey>(
             keyedBy keyType: NestedKey.Type,

@@ -7,8 +7,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = 1
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=1")
     }
 
@@ -18,8 +18,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let y = 2
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=1&y=2")
     }
 
@@ -29,8 +29,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = 1
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "y=2&x=1")
     }
 
@@ -39,8 +39,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty")
     }
 
@@ -49,8 +49,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%20Python")
     }
 
@@ -59,8 +59,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty%Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%25Python")
     }
 
@@ -69,8 +69,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty&Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%26Python")
     }
 
@@ -79,8 +79,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty=Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%3DPython")
     }
 
@@ -89,8 +89,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty+Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%2BPython")
     }
 
@@ -99,8 +99,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty?Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%3FPython")
     }
 
@@ -109,8 +109,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty#Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%23Python")
     }
 
@@ -119,8 +119,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty/Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%2FPython")
     }
 
@@ -129,8 +129,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty:Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%3APython")
     }
 
@@ -139,8 +139,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty;Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%3BPython")
     }
 
@@ -149,8 +149,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty,Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%2CPython")
     }
 
@@ -159,8 +159,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty$Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%24Python")
     }
 
@@ -169,8 +169,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty*Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%2APython")
     }
 
@@ -179,8 +179,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty!Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%21Python")
     }
 
@@ -189,8 +189,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty@Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%40Python")
     }
 
@@ -199,8 +199,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty~Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty~Python")
     }
 
@@ -209,8 +209,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty^Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%5EPython")
     }
 
@@ -219,8 +219,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty(Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%28Python")
     }
 
@@ -229,8 +229,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty)Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%29Python")
     }
 
@@ -239,8 +239,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty[Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%5BPython")
     }
 
@@ -249,8 +249,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty]Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%5DPython")
     }
 
@@ -259,8 +259,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty{Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%7BPython")
     }
 
@@ -269,8 +269,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty}Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%7DPython")
     }
 
@@ -279,8 +279,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let x = "Monty|Python"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=Monty%7CPython")
     }
 
@@ -291,8 +291,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let z = "Tomek"
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "x=1&y=2&z=Tomek")
     }
 
@@ -301,8 +301,8 @@ final class QueryStringEncoderTests: XCTestCase {
             let date = Date(timeIntervalSince1970: 0)
         }
 
-        var encoder = QueryStringEncoder()
-        var result = try encoder.encode(Test())
+        let encoder = QueryStringEncoder()
+        let result = try encoder.encode(Test())
         XCTAssertEqual(result, "date=1970-01-01T00%3A00%3A00.000Z")
     }
 
@@ -316,9 +316,5 @@ final class QueryStringEncoderTests: XCTestCase {
         let data = Data(foo: "foo", bar: 42)
         let query = try encoder.encode(data)
         XCTAssertEqual(query, "foo=foo&bar=42")
-    }
-
-    func testArrayNotSupported() {
-
     }
 }
