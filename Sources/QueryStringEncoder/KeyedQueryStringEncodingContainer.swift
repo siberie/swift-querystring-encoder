@@ -32,11 +32,6 @@ struct KeyedQueryStringEncodingContainer<Key>: KeyedEncodingContainerProtocol wh
         )
     }
 
-    mutating func encode(_ value: Date, forKey key: Key) throws {
-        print("encoding keyed date")
-        container.encode(key: codingPath + [key], value: value.description)
-    }
-
     mutating func encode(_ value: Double, forKey key: Key) throws {
         container.encode(key: codingPath + [key], value: value.description)
     }

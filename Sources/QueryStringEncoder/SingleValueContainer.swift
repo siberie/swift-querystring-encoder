@@ -31,13 +31,7 @@ struct SingleValueContainer: SingleValueEncodingContainer {
         )
     }
 
-    mutating func encode(_ value: Date) throws {
-        print("encoding date")
-        container.encode(key: codingPath, value: value.description)
-    }
-
     mutating func encode(_ value: Double) throws {
-        print("encoding double")
         container.encode(key: codingPath, value: value.description)
     }
 
@@ -86,7 +80,6 @@ struct SingleValueContainer: SingleValueEncodingContainer {
     }
 
     mutating func encode<T>(_ value: T) throws where T: Encodable {
-        print("encoding", value)
         let encoder = QueryParametersEncoder(to: container, codingPath: codingPath)
         try value.encode(to: encoder)
     }
