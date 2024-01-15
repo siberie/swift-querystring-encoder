@@ -305,8 +305,20 @@ final class QueryStringEncoderTests: XCTestCase {
         var result = try encoder.encode(Test())
         XCTAssertEqual(result, "date=1970-01-01T00%3A00%3A00.000Z")
     }
-    
+
+    func testFoobarStruct() throws {
+        struct Data: Encodable {
+            let foo: String
+            let bar: Int
+        }
+
+        let encoder = QueryStringEncoder()
+        let data = Data(foo: "foo", bar: 42)
+        let query = try encoder.encode(data)
+        XCTAssertEqual(query, "foo=foo&bar=42")
+    }
+
     func testArrayNotSupported() {
-        
+
     }
 }
