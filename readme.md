@@ -1,4 +1,4 @@
-# QueryString encoder
+# QueryStringEncoder
 
 This is a simple encoder for query strings. It is not a parser, so it does not
 support decoding (yet).

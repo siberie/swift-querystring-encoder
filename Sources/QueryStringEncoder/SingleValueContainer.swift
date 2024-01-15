@@ -22,12 +22,9 @@ struct SingleValueContainer: SingleValueEncodingContainer {
     }
 
     mutating func encode(_ value: String) throws {
-        let characters = CharacterSet(
-                charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~-._"
-        )
         container.encode(
-                key: codingPath,
-                value: value.addingPercentEncoding(withAllowedCharacters: characters)!
+            key: codingPath,
+            value: value.addingPercentEncoding(withAllowedCharacters: allowedCharacters)!
         )
     }
 

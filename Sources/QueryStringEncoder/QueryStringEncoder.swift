@@ -37,8 +37,7 @@ struct QueryParametersEncoder: Encoder {
     }
 
     func singleValueContainer() -> SingleValueEncodingContainer {
-        let container = SingleValueContainer(to: data, codingPath: codingPath)
-        return container
+        SingleValueContainer(to: data, codingPath: codingPath)
     }
 }
 
@@ -47,10 +46,7 @@ extension QueryParametersEncoder {
         var items: [(key: String, value: String)] = []
 
         func encode(key: [CodingKey], value: String) {
-            let keyString = key.map {
-                        $0.stringValue
-                    }
-                    .joined(separator: ".")
+            let keyString = key.map(\.stringValue).joined(separator: ".")
             items.append((key: keyString, value: value))
         }
     }
