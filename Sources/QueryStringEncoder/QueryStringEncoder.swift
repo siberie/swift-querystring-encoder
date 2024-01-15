@@ -15,7 +15,7 @@ struct QueryParametersEncoder: Encoder {
     private(set) var userInfo: [CodingUserInfoKey: Any] = [:]
     private let data: Data
 
-    init(to data: Data = Data(), codingPath: [CodingKey] = []) {
+    public init(to data: Data = Data(), codingPath: [CodingKey] = []) {
         self.data = data
         self.codingPath = codingPath
     }
