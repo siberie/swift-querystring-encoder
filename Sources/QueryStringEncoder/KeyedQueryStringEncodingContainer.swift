@@ -24,8 +24,8 @@ struct KeyedQueryStringEncodingContainer<Key>: KeyedEncodingContainerProtocol wh
 
     mutating func encode(_ value: String, forKey key: Key) throws {
         container.encode(
-            key: codingPath + [key],
-            value: value.addingPercentEncoding(withAllowedCharacters: allowedCharacters)!
+                key: codingPath + [key],
+                value: value.addingPercentEncoding(withAllowedCharacters: allowedCharacters)!
         )
     }
 
@@ -78,14 +78,13 @@ struct KeyedQueryStringEncodingContainer<Key>: KeyedEncodingContainerProtocol wh
     }
 
     mutating func encode<T>(_ value: T, forKey key: Key) throws where T: Encodable {
-        // based on https://github.com/apple/swift-foundation/blob/87fdbaef20095a5c04dc952b291cc5f20d01bca6/Sources/FoundationEssentials/JSON/JSONEncoder.swift#L1114
         switch T.self {
-        case is Date.Type:
-            let string = iso8601DateFormatter.string(from: value as! Date)
-            try encode(string, forKey: key)
-        default:
-            let encoder = QueryParametersEncoder(to: container, codingPath: codingPath + [key])
-            try value.encode(to: encoder)
+            case is Date.Type:
+                let string = iso8601DateFormatter.string(from: value as! Date)
+                try encode(string, forKey: key)
+            default:
+                let encoder = QueryParametersEncoder(to: container, codingPath: codingPath + [key])
+                try value.encode(to: encoder)
         }
     }
 

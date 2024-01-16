@@ -1,11 +1,20 @@
 import Foundation
 
 public class QueryStringEncoder {
-    public init() {}
+    public init() {
+    }
 
-    public func encode<T: Encodable>(_ value: T) throws -> String {
+    public func encode(_ value: Encodable) throws -> String {
         let encoder = QueryParametersEncoder()
         try value.encode(to: encoder)
+        return encoder.output
+    }
+
+    public func encode(_ values: Encodable...) throws -> String {
+        let encoder = QueryParametersEncoder()
+        try values.forEach { value in
+            try value.encode(to: encoder)
+        }
         return encoder.output
     }
 }
@@ -22,9 +31,9 @@ struct QueryParametersEncoder: Encoder {
 
     var output: String {
         data.items.map { key, value in
-            "\(key)=\(value)"
-        }
-        .joined(separator: "&")
+                    "\(key)=\(value)"
+                }
+                .joined(separator: "&")
     }
 
     func container<Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer<Key> where Key: CodingKey {
