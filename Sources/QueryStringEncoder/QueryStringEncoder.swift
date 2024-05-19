@@ -1,12 +1,19 @@
 import Foundation
 
 public class QueryStringEncoder {
-    public init() {}
+    public init() {
+    }
 
     public func encode<T: Encodable>(_ value: T) throws -> String {
         let encoder = QueryParametersEncoder()
         try value.encode(to: encoder)
-        return encoder.output
+        guard let output = encoder.output else {
+            throw EncodingError.invalidValue(
+                value,
+                EncodingError.Context(codingPath: [], debugDescription: "Failed to encode value")
+            )
+        }
+        return output
     }
 }
 
@@ -20,11 +27,13 @@ struct QueryParametersEncoder: Encoder {
         self.codingPath = codingPath
     }
 
-    var output: String {
-        data.items.map { key, value in
-            "\(key)=\(value)"
+    var output: String? {
+        var components = URLComponents()
+        components.queryItems = data.items.map { key, value in
+            URLQueryItem(name: key, value: value)
         }
-        .joined(separator: "&")
+
+        return components.percentEncodedQuery
     }
 
     func container<Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer<Key> where Key: CodingKey {
